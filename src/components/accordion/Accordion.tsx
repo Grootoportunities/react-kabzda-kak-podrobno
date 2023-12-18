@@ -8,20 +8,12 @@ type AccordionPropsType = {
 export function Accordion(props: AccordionPropsType) {
   console.log("Accordion Rendering");
 
-  if (props.turned) {
-    return (
-      <div>
-        <AccordionTitle head={props.heading} />
-      </div>
-    );
-  } else {
-    return (
-      <div>
-        <AccordionTitle head={props.heading} />
-        <AccordionBody />
-      </div>
-    );
-  }
+  return (
+    <div>
+      <AccordionTitle head={props.heading} />
+      {!props.turned && <AccordionBody />}
+    </div>
+  );
 }
 
 function AccordionTitle(props: { head: string }) {

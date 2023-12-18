@@ -1,71 +1,22 @@
 import React from "react";
 import styled from "styled-components";
 
-export function Rating(props: { value?: 1 | 2 | 3 | 4 | 5 }) {
+type RatingPropsType = {
+  value: 0 | 1 | 2 | 3 | 4 | 5;
+};
+
+export function Rating(props: RatingPropsType) {
   console.log("Rating Rendering");
 
-  switch (props.value) {
-    case 1:
-      return (
-        <div>
-          <Star choosed />
-          <Star />
-          <Star />
-          <Star />
-          <Star />
-        </div>
-      );
-    case 2:
-      return (
-        <div>
-          <Star choosed />
-          <Star choosed />
-          <Star />
-          <Star />
-          <Star />
-        </div>
-      );
-    case 3:
-      return (
-        <div>
-          <Star choosed />
-          <Star choosed />
-          <Star choosed />
-          <Star />
-          <Star />
-        </div>
-      );
-    case 4:
-      return (
-        <div>
-          <Star choosed />
-          <Star choosed />
-          <Star choosed />
-          <Star choosed />
-          <Star />
-        </div>
-      );
-    case 5:
-      return (
-        <div>
-          <Star choosed />
-          <Star choosed />
-          <Star choosed />
-          <Star choosed />
-          <Star choosed />
-        </div>
-      );
-    default:
-      return (
-        <div>
-          <Star />
-          <Star />
-          <Star />
-          <Star />
-          <Star />
-        </div>
-      );
-  }
+  return (
+    <div>
+      <Star choosed={props.value >= 1} />
+      <Star choosed={props.value >= 2} />
+      <Star choosed={props.value >= 3} />
+      <Star choosed={props.value >= 4} />
+      <Star choosed={props.value >= 5} />
+    </div>
+  );
 }
 
 function Star(props: { choosed?: boolean }) {
