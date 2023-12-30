@@ -1,6 +1,10 @@
 import { useState } from "react";
 
-export function UnctontrolledOnOff() {
+type UncontrolledOnOff = {
+  setOn: (on: boolean) => void;
+};
+
+export function UncontrolledOnOff(props: UncontrolledOnOff) {
   const [on, setOn] = useState(false);
 
   const onOffStyle = { marginTop: "10px", display: "flex" };
@@ -20,10 +24,12 @@ export function UnctontrolledOnOff() {
 
   const onClickOnHandler = () => {
     setOn(true);
+    props.setOn(true);
   };
 
   const onClickOffHandler = () => {
     setOn(false);
+    props.setOn(false);
   };
 
   return (

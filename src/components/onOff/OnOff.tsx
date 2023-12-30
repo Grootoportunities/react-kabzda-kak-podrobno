@@ -19,13 +19,9 @@ export function OnOff(props: OnOffProps) {
     backgroundColor: props.on ? "green" : "red",
   };
 
-  const onClickOnHandler = () => {
-    props.setOn(true);
-  };
+  const onClickOnHandler = () => props.setOn(true);
 
-  const onClickOffHandler = () => {
-    props.setOn(false);
-  };
+  const onClickOffHandler = () => props.setOn(false);
 
   return (
     <div style={onOffStyle}>

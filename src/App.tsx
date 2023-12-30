@@ -4,6 +4,7 @@ import { Rating, RatingValueType } from "./components/rating/Rating";
 import styled from "styled-components";
 import { Accordion } from "./components/accordion/Accordion";
 import { OnOff } from "./components/onOff/OnOff";
+import { UncontrolledOnOff } from "./components/onOff/UncontrolledOnOff";
 
 function App() {
   console.log("App Rendering");
@@ -15,8 +16,14 @@ function App() {
   return (
     <StyledApp>
       <Rating value={ratingValue} onClick={setRatingValue} />
-      <Accordion heading={"Menu"} turned={turned} onClick={setTurned} />
+      <Accordion
+        heading={"Menu"}
+        turned={turned}
+        onClick={() => setTurned(!turned)}
+      />
+      {/*<Accordion heading={"Menu"} turned={turned} onClick={setTurned} />*/}
       <OnOff on={on} setOn={setOn} />
+      <UncontrolledOnOff setOn={setOn} /> {on.toString()}
     </StyledApp>
   );
 }
