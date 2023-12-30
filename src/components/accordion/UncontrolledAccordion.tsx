@@ -14,23 +14,6 @@ export function UncontrolledAccordion(props: AccordionPropsType) {
   console.log("Accordion Rendering");
 
   const [toggle, setToggle] = useState(true);
-  // const [btnName, setBtnName] = useState("Collapse");
-
-  // const onClickButtonHandler = () => {
-  //   // toggle
-  //   //   ? (() => {
-  //   //       setToggle(false);
-  //   //       setBtnName("Expand");
-  //   //     })()
-  //   //   : (() => {
-  //   //       setToggle(true);
-  //   //       setBtnName("Collapse");
-  //   //     })();
-  //
-  //   setToggle(!toggle);
-  //   debugger;
-  //   toggle ? setBtnName("Collapse") : setBtnName("Expand");
-  // };
 
   return (
     <div>
@@ -49,7 +32,6 @@ function AccordionTitle(props: AccordionTitlePropsType) {
 
   const onClickButtonHandler = () => {
     props.setToggle(!props.toggle);
-    // props.toggle ? props.setBtnName("Collapse") : setBtnName("Expand");
   };
 
   return <h3 onClick={onClickButtonHandler}>{props.head}</h3>;

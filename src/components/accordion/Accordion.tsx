@@ -2,7 +2,8 @@ import React from "react";
 
 type AccordionPropsType = {
   heading: string;
-  turned?: boolean;
+  turned: boolean;
+  onClick: (turned: boolean) => void;
 };
 
 export function Accordion(props: AccordionPropsType) {
@@ -10,15 +11,28 @@ export function Accordion(props: AccordionPropsType) {
 
   return (
     <div>
-      <AccordionTitle head={props.heading} />
+      <AccordionTitle
+        head={props.heading}
+        onClick={() => props.onClick(!props.turned)}
+        turned={props.turned}
+      />
       {!props.turned && <AccordionBody />}
     </div>
   );
 }
 
-function AccordionTitle(props: { head: string }) {
+type AccordionTitlePropsType = {
+  head: string;
+  onClick: (turned: boolean) => void;
+  turned: boolean;
+};
+
+function AccordionTitle(props: AccordionTitlePropsType) {
   console.log("AccordionTitle Rendering");
-  return <h3>{props.head}</h3>;
+
+  const onClickHandler = () => props.onClick(props.turned);
+
+  return <h3 onClick={onClickHandler}>{props.head}</h3>;
 }
 
 function AccordionBody() {

@@ -1,14 +1,13 @@
-type OnOffProps = {
-  on: boolean;
-  setOn: (on: boolean) => void;
-};
+import { useState } from "react";
 
-export function OnOff(props: OnOffProps) {
+export function UnctontrolledOnOff() {
+  const [on, setOn] = useState(false);
+
   const onOffStyle = { marginTop: "10px", display: "flex" };
-  const onStyle = { backgroundColor: props.on ? "green" : "" };
+  const onStyle = { backgroundColor: on ? "green" : "" };
   const offStyle = {
     marginLeft: "10px",
-    backgroundColor: !props.on ? "red" : "",
+    backgroundColor: !on ? "red" : "",
   };
   const lampStyle = {
     width: "50px",
@@ -16,15 +15,15 @@ export function OnOff(props: OnOffProps) {
     border: "1px solid black",
     borderRadius: "50%",
     marginLeft: "10px",
-    backgroundColor: props.on ? "green" : "red",
+    backgroundColor: on ? "green" : "red",
   };
 
   const onClickOnHandler = () => {
-    props.setOn(true);
+    setOn(true);
   };
 
   const onClickOffHandler = () => {
-    props.setOn(false);
+    setOn(false);
   };
 
   return (
