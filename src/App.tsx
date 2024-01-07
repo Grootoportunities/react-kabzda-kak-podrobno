@@ -4,7 +4,7 @@ import { Rating, RatingValueType } from "./components/rating/Rating";
 import styled from "styled-components";
 import { Accordion } from "./components/accordion/Accordion";
 import { OnOff } from "./components/onOff/OnOff";
-import { UncontrolledOnOff } from "./components/onOff/UncontrolledOnOff";
+import { UncontrolledOnOff } from "./components/uncontrolledOnOff/UncontrolledOnOff";
 
 function App() {
   console.log("App Rendering");

@@ -2,10 +2,11 @@ import { useState } from "react";
 
 type UncontrolledOnOff = {
   setOn: (on: boolean) => void;
+  defaultState?: boolean;
 };
 
 export function UncontrolledOnOff(props: UncontrolledOnOff) {
-  const [on, setOn] = useState(false);
+  const [on, setOn] = useState<boolean>(props.defaultState || false);
 
   const onOffStyle = { marginTop: "10px", display: "flex" };
   const onStyle = { backgroundColor: on ? "green" : "" };
