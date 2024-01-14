@@ -1,19 +1,33 @@
 import { Accordion } from "./Accordion";
 import { useState } from "react";
 import { action } from "@storybook/addon-actions";
+import { v1 } from "uuid";
 
 export default {
   title: "Accordion",
   component: Accordion,
 };
 
+export type ItemType = { id: string; title: string };
+
 const callback = "Accordion has been changed";
+const onClickCallback = (id: string) =>
+  alert(`User with id ${id} should be happy`);
+
+const users: ItemType[] = [
+  { id: v1(), title: "Daniil" },
+  { id: v1(), title: "Anastasia" },
+  { id: v1(), title: "Igor" },
+  { id: v1(), title: "Viktor" },
+];
 
 export const UncollapsedAccordion = () => (
   <Accordion
     heading={"UncollapsedAccordion"}
     turned={false}
     onClick={action(callback)}
+    items={users}
+    onClickCallback={onClickCallback}
   />
 );
 export const CollapsedAccordion = () => (
@@ -21,6 +35,8 @@ export const CollapsedAccordion = () => (
     heading={"CollapsedAccordion"}
     turned={true}
     onClick={action(callback)}
+    items={users}
+    onClickCallback={onClickCallback}
   />
 );
 export const ChangingAccordione = () => {
@@ -31,6 +47,8 @@ export const ChangingAccordione = () => {
       heading={"ChangingAccordione"}
       turned={collapse}
       onClick={() => setCollapse(!collapse)}
+      items={users}
+      onClickCallback={onClickCallback}
     />
   );
 };
