@@ -2,8 +2,6 @@ import { Select } from "./Select";
 import { v1 } from "uuid";
 import { ItemType } from "../accordion/Accordion.stories";
 import { useState } from "react";
-import { Simulate } from "react-dom/test-utils";
-import select = Simulate.select;
 
 export default {
   title: "Select",
