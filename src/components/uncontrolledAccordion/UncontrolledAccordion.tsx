@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useReducer } from "react";
+import { reducer, TOGGLE } from "./reducer";
 
 type AccordionPropsType = {
   heading: string;
@@ -7,22 +8,29 @@ type AccordionPropsType = {
 type AccordionTitlePropsType = {
   head: string;
   toggle: boolean;
-  setToggle: (toggle: boolean) => void;
+  setToggle: () => void;
+  // setToggle: (toggle: boolean) => void;
 };
 
 export function UncontrolledAccordion(props: AccordionPropsType) {
   console.log("Accordion Rendering");
 
-  const [toggle, setToggle] = useState(true);
+  // const [toggle, setToggle] = useState(true); Вместо setToggle теперь занимается dispatch.
+  // В него передаём название (type) инструкции, по которой редюсер должен изменить стейт.
+  // В редюсер передаём первым значением функцию редюсера, вторым - иницилизационный стейт.
+
+  const [state, dispatch] = useReducer(reducer, { toggle: false });
 
   return (
     <div>
       <AccordionTitle
         head={props.heading}
-        setToggle={setToggle}
-        toggle={toggle}
+        toggle={state.toggle}
+        setToggle={() => dispatch({ type: TOGGLE })}
+        // setToggle={setToggle} Вместо setToggle теперь dispatch. Передали в него инструкцию (объект),
+        // в котором обязательно сидит type (название инструкции)
       />
-      {toggle && <AccordionBody />}
+      {state.toggle && <AccordionBody />}
     </div>
   );
 }
@@ -30,9 +38,8 @@ export function UncontrolledAccordion(props: AccordionPropsType) {
 function AccordionTitle(props: AccordionTitlePropsType) {
   console.log("AccordionTitle Rendering");
 
-  const onClickButtonHandler = () => {
-    props.setToggle(!props.toggle);
-  };
+  const onClickButtonHandler = () => props.setToggle();
+  // props.setToggle(!props.toggle); // Раньше передавал функцию setToggle, сейчас этим занимается dispatch
 
   return <h3 onClick={onClickButtonHandler}>{props.head}</h3>;
 }
