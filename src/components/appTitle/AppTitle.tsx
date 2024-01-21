@@ -1,6 +1,8 @@
 import React from "react";
 
-export function AppTitle(props: { topic: string }) {
+export const AppTitle = React.memo(AppTitleMemo);
+
+export function AppTitleMemo(props: { topic: string }) {
   console.log("AppTitle Rendering");
   return <h2>{props.topic}</h2>;
 }

@@ -1,9 +1,13 @@
+import React from "react";
+
 type OnOffProps = {
   on: boolean;
   setOn: (on: boolean) => void;
 };
 
-export function OnOff(props: OnOffProps) {
+export const OnOff = React.memo(OnOffMemo);
+
+export function OnOffMemo(props: OnOffProps) {
   const onOffStyle = { marginTop: "10px", display: "flex" };
   const onStyle = { backgroundColor: props.on ? "green" : "" };
   const offStyle = {

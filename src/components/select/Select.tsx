@@ -8,7 +8,7 @@ type SelectProps = {
   items: ItemType[];
 };
 
-export const Select: React.FC<SelectProps> = ({
+export const SelectMemo: React.FC<SelectProps> = ({
   selectTitle,
   onChange,
   items,
@@ -73,6 +73,8 @@ export const Select: React.FC<SelectProps> = ({
     </StyledSelect>
   );
 };
+
+export const Select = React.memo(SelectMemo);
 
 const StyledSelect = styled.div`
   display: flex;

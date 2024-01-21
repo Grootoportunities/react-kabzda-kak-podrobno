@@ -9,9 +9,12 @@ type AccordionPropsType = {
   onClickCallback: (id: string) => void;
 };
 
-export function Accordion(props: AccordionPropsType) {
-  console.log("Accordion Rendering");
+export const Accordion = React.memo(AccordionMemo);
+const AccordionTitle = React.memo(AccordionTitleMemo);
+const AccordionBody = React.memo(AccordionBodyMemo);
 
+export function AccordionMemo(props: AccordionPropsType) {
+  console.log("Accordion Rendering");
   return (
     <div>
       <AccordionTitle head={props.heading} onClick={props.onClick} />
@@ -30,7 +33,7 @@ type AccordionTitlePropsType = {
   onClick: () => void;
 };
 
-function AccordionTitle(props: AccordionTitlePropsType) {
+function AccordionTitleMemo(props: AccordionTitlePropsType) {
   console.log("AccordionTitle Rendering");
 
   const onClickHandler = () => props.onClick();
@@ -43,7 +46,7 @@ type AccordionBodyProps = {
   onClickCallback: (id: string) => void;
 };
 
-function AccordionBody(props: AccordionBodyProps) {
+function AccordionBodyMemo(props: AccordionBodyProps) {
   console.log("AccordionBody Rendering");
 
   const onClickHandler = (id: string) => props.onClickCallback(id);

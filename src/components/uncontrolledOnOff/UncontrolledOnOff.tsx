@@ -1,11 +1,13 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
-type UncontrolledOnOff = {
+type UncontrolledOnOffProps = {
   setOn: (on: boolean) => void;
   defaultState?: boolean;
 };
 
-export function UncontrolledOnOff(props: UncontrolledOnOff) {
+export const UncontrolledOnOff = React.memo(UncontrolledOnOffMemo);
+
+export function UncontrolledOnOffMemo(props: UncontrolledOnOffProps) {
   const [on, setOn] = useState<boolean>(props.defaultState || false);
 
   const onOffStyle = { marginTop: "10px", display: "flex" };

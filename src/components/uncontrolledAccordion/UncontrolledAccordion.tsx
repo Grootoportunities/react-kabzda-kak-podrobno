@@ -12,7 +12,11 @@ type AccordionTitlePropsType = {
   // setToggle: (toggle: boolean) => void;
 };
 
-export function UncontrolledAccordion(props: AccordionPropsType) {
+export const UncontrolledAccordion = React.memo(UncontrolledAccordionMemo);
+const AccordionTitle = React.memo(AccordionTitleMemo);
+const AccordionBody = React.memo(AccordionBodyMemo);
+
+export function UncontrolledAccordionMemo(props: AccordionPropsType) {
   console.log("Accordion Rendering");
 
   // const [toggle, setToggle] = useState(true); Вместо setToggle теперь занимается dispatch.
@@ -35,7 +39,7 @@ export function UncontrolledAccordion(props: AccordionPropsType) {
   );
 }
 
-function AccordionTitle(props: AccordionTitlePropsType) {
+function AccordionTitleMemo(props: AccordionTitlePropsType) {
   console.log("AccordionTitle Rendering");
 
   const onClickButtonHandler = () => props.setToggle();
@@ -44,7 +48,7 @@ function AccordionTitle(props: AccordionTitlePropsType) {
   return <h3 onClick={onClickButtonHandler}>{props.head}</h3>;
 }
 
-function AccordionBody() {
+function AccordionBodyMemo() {
   console.log("AccordionBody Rendering");
   return (
     <ul>
