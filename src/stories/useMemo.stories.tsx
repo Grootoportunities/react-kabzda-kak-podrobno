@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useMemo, useState } from "react";
+import React, { ChangeEvent, useCallback, useMemo, useState } from "react";
 
 export default {
   title: "Use Memo",
@@ -54,7 +54,7 @@ export const UsersMemo = (props: { users: string[] }) => {
 
 const Users = React.memo(UsersMemo);
 
-export const useMemoInHelpForReactMemo = () => {
+export const UseMemoInHelpForReactMemo = () => {
   console.log("useMemoInHelpForReactMemo");
 
   const [count, setCount] = useState(0);
@@ -81,6 +81,53 @@ export const useMemoInHelpForReactMemo = () => {
       <button onClick={onClickAddUserHandler}>+Add User</button>
       {count}
       <Users users={filteredUsers} />
+    </>
+  );
+};
+
+type GamesProps = { callback: () => void };
+
+export const GamesMemo: React.FC<GamesProps> = ({ callback }) => {
+  console.log("Games rendering");
+
+  return (
+    <div>
+      <button onClick={callback}>Add Game</button>
+    </div>
+  );
+};
+
+const Games = React.memo(GamesMemo);
+
+export const LikeUseCallback = () => {
+  console.log("UseCallback Rendering");
+
+  const [count, setCount] = useState(0);
+  const [games, setGames] = useState([
+    "Baldur's Gate 3",
+    "True Stalker",
+    "Project Zomboid",
+    "Fallout 4",
+    "Kingdom Two Crowns",
+  ]);
+
+  const onClickCountHandler = () => setCount((prev) => prev + 1);
+
+  // const memoizedAddGameHandler = useMemo(
+  //   () => () => setGames(["Metro", ...games]),
+  //   [games],
+  // );
+
+  const memoizedAddGameHandler = useCallback(() => {
+    console.log(games);
+    return setGames(["Metro", ...games]);
+  }, [games]);
+
+  return (
+    <>
+      <button onClick={onClickCountHandler}>Increment</button>
+      {count}
+      <Games callback={memoizedAddGameHandler} />
     </>
   );
 };
