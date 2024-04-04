@@ -1,41 +1,36 @@
 import React, { FC, useEffect, useState } from "react";
+import { DigitalClockMode } from "./DigitalClockMode";
+import { AnalogClockMode } from "./AnalogClockMode";
 
 type FormatType = "HH:MM:SS" | "MM:HH:SS" | "SS:MM:HH";
 
 type ClockProps = {
   format?: FormatType;
+  mode: "digital" | "analog";
 };
 
-const getTime = (time: number) => (time < 10 ? "0" + time : time);
+export type ClockModeProps = {
+  format?: FormatType;
+  time: Date;
+};
 
-export const Clock: FC<ClockProps> = ({ format }) => {
+export const Clock: FC<ClockProps> = ({ format, mode }) => {
   const [time, setDate] = useState(new Date());
 
   useEffect(() => {
     setInterval(() => setDate(new Date()), 1000);
   }, []);
 
-  return (
-    <>
-      <span>
-        {format === "HH:MM:SS"
-          ? getTime(time.getHours())
-          : format === "MM:HH:SS"
-            ? getTime(time.getMinutes())
-            : getTime(time.getSeconds())}
-      </span>
-      <span>:</span>
-      <span>
-        {format === "MM:HH:SS"
-          ? getTime(time.getHours())
-          : getTime(time.getMinutes())}
-      </span>
-      <span>:</span>
-      <span>
-        {format === "SS:MM:HH"
-          ? getTime(time.getHours())
-          : getTime(time.getSeconds())}
-      </span>
-    </>
-  );
+  let clockMode;
+
+  switch (mode) {
+    case "analog":
+      clockMode = <AnalogClockMode time={time} />;
+      break;
+    case "digital":
+    default:
+      clockMode = <DigitalClockMode time={time} format={format} />;
+  }
+
+  return <div>{clockMode}</div>;
 };

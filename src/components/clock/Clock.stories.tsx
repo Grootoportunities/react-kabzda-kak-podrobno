@@ -5,8 +5,14 @@ export default {
   component: Clock,
 };
 
-export const StandartClock = () => <Clock format={"HH:MM:SS"} />;
-export const MinutesFirstFormatClock = () => <Clock format={"MM:HH:SS"} />;
-export const SecondsFirstFormatClock = () => <Clock format={"SS:MM:HH"} />;
-
-export const WithoutFormatClock = () => <Clock />;
+export const StandartClock = () => (
+  <Clock format={"HH:MM:SS"} mode={"digital"} />
+);
+export const MinutesFirstFormatClock = () => (
+  <Clock format={"MM:HH:SS"} mode={"digital"} />
+);
+export const SecondsFirstFormatClock = () => (
+  <Clock format={"SS:MM:HH"} mode={"digital"} />
+);
+export const WithoutFormatClock = () => <Clock mode={"digital"} />;
+export const AnalogClock = () => <Clock mode={"analog"} />;
